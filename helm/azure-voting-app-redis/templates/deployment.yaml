@@ -4,7 +4,7 @@ kind: Namespace
 metadata:
   name: {{ template "azure-voting-app-redis.name" . }}
 ---
-apiVersion: apps/v1
+apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: azure-vote-back
@@ -34,7 +34,7 @@ spec:
   selector:
     app: azure-vote-back
 ---
-apiVersion: apps/v1
+apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
   name: {{ template "azure-voting-app-redis.fullname" . }}
