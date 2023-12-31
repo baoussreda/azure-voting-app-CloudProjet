@@ -15,6 +15,13 @@ spec:
     metadata:
       labels:
         app: azure-vote-back
+    spec:
+      containers:
+      - name: azure-vote-back
+        image: redis
+        ports:
+        - containerPort: 6379
+          name: redis
 ---
 apiVersion: v1
 kind: Service
@@ -30,7 +37,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "azure-voting-app-redis.name" . }}
+  name: {{ template "azure-voting-app-redis.fullname" . }}
   namespace: {{ template "azure-voting-app-redis.name" . }}
   labels:
     app: {{ template "azure-voting-app-redis.name" . }}
