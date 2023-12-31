@@ -37,7 +37,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "azure-voting-app-redis.fullname" . }}
+  name: {{ template "azure-voting-app-redis.name" . }}
   namespace: {{ template "azure-voting-app-redis.name" . }}
   labels:
     app: {{ template "azure-voting-app-redis.name" . }}
