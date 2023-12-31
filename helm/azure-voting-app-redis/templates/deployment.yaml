@@ -11,6 +11,10 @@ metadata:
   namespace: {{ template "azure-voting-app-redis.name" . }}
 spec:
   replicas: 1
+  template:
+    metadata:
+      labels:
+        app: azure-vote-back
     spec:
       containers:
       - name: azure-vote-back
@@ -29,40 +33,4 @@ spec:
   - port: 6379
   selector:
     app: azure-vote-back
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: {{ template "azure-voting-app-redis.name" . }}
-  namespace: {{ template "azure-voting-app-redis.name" . }}
-  labels:
-    app: {{ template "azure-voting-app-redis.name" . }}
-    chart: {{ template "azure-voting-app-redis.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
-spec:
-  replicas: {{ .Values.replicaCount }}
-  selector:
-    matchLabels:
-      app: {{ template "azure-voting-app-redis.name" . }}
-      release: {{ .Release.Name }}
-  template:
-    metadata:
-      labels:
-        app: {{ template "azure-voting-app-redis.name" . }}
-        release: {{ .Release.Name }}
-    spec:
-      containers:
-        - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
-          ports:
-          - name: http
-            containerPort: 80
-            protocol: TCP
-          env:
-          - name: REDIS
-            value: "azure-vote-back"
-      imagePullSecrets:
-      - name: regcred
-        
+
