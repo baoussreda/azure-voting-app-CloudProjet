@@ -11,10 +11,6 @@ metadata:
   namespace: {{ template "azure-voting-app-redis.name" . }}
 spec:
   replicas: 1
-  template:
-    metadata:
-      labels:
-        app: azure-vote-back
     spec:
       containers:
       - name: azure-vote-back
@@ -46,6 +42,10 @@ metadata:
     heritage: {{ .Release.Service }}
 spec:
   replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "azure-voting-app-redis.name" . }}
+      release: {{ .Release.Name }}
   template:
     metadata:
       labels:
