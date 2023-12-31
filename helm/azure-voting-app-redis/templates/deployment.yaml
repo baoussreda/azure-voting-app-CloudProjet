@@ -46,10 +46,6 @@ metadata:
     heritage: {{ .Release.Service }}
 spec:
   replicas: {{ .Values.replicaCount }}
-  selector:
-    matchLabels:
-      app: {{ template "azure-voting-app-redis.name" . }}
-      release: {{ .Release.Name }}
   template:
     metadata:
       labels:
