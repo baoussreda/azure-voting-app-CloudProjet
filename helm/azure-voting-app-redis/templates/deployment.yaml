@@ -34,7 +34,7 @@ spec:
   selector:
     app: azure-vote-back
 ---
-apiVersion: apps/v2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "azure-voting-app-redis.fullname" . }}
