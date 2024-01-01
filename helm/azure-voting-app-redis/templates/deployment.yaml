@@ -11,6 +11,9 @@ metadata:
   namespace: {{ template "azure-voting-app-redis.name" . }}
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: azure-vote-back
   template:
     metadata:
       labels:
