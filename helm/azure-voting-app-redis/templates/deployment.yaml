@@ -29,13 +29,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: azure-vote-back-load
+  name: azure-vote-back
   namespace: {{ template "azure-voting-app-redis.name" . }}
 spec:
   ports:
   - port: 6379
   selector:
-    app: azure-vote-back-load
+    app: azure-vote-back
 ---
 apiVersion: apps/v1
 kind: Deployment
